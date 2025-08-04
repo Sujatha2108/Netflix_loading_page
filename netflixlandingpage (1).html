@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone</title>
+    <!-- Updated FontAwesome Link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-color: #e50914;
+            --dark-color: #141414;
+            --light-color: #f4f4f4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #999;
+        }
+        body {
+    background-color: #141414;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.trending-container {
+    padding: 20px;
+}
+
+.trending-container h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.movie-slider {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    scrollbar-width: none; /* Hide scrollbar */
+}
+
+.movie-card {
+    position: relative;
+    min-width: 150px;
+    max-width: 150px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.movie-card:hover {
+    transform: scale(1.1);
+}
+
+.movie-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.rank {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 8px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 50%;
+}
+:root {
+            --primary-color: #e50914;
+            --dark-color: #141414;
+            --light-color: #f4f4f4;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        /* More Reasons Section */
+        .reasons {
+            max-width: 80%;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .reasons h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .reason-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .reason-card {
+            background: #1c1c1c;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .reason-card:hover {
+            transform: scale(1.05);
+        }
+
+        .reason-card h3 {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .reason-card p {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* FAQ Section */
+        .faq {
+            max-width: 80%;
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        .faq h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            background: #1c1c1c;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .faq-item:hover {
+            background: #333;
+        }
+
+        .faq-item h3 {
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            display: none;
+            font-size: 0.9rem;
+            padding-top: 0.5rem;
+            color: #ddd;
+        }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+
+
+        /* Showcase Section */
+        .showcase {
+            width: 100%;
+            height: 93vh;
+            position: relative;
+            background: url('https://i.redd.it/zjgs096khv591.jpg') no-repeat center center/cover;
+        }
+
+        .showcase::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        .showcase-top {
+            position: relative;
+            z-index: 2;
+            height: 90px;
+        }
+
+        .showcase-top img {
+            width: 170px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .showcase-top a {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(-50%, -50%);
+        }
+
+        .showcase-content {
+            position: relative;
+            z-index: 2;
+            width: 65%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-top: 9rem;
+        }
+
+        .showcase-content h1 {
+            font-weight: 700;
+            font-size: 5.2rem;
+            margin-bottom: 2rem;
+        }
+
+
+        .show {
+            display: block !important;
+        }
+
+        .tab-content img {
+            max-width: 70%;
+            height: auto;
+            margin-top: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: opacity 0.2s ease-in;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            max-width: 70%;
+            margin: auto;
+            color: #999;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 960px) {
+            .showcase-content h1 {
+                font-size: 3.7rem;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .showcase-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    
+    /* Email Signup Section */
+    .signup {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .signup p {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .signup-box {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .signup-box input {
+        padding: 10px;
+        width: 300px;
+        border-radius: 5px;
+        border: 1px solid #aaa;
+        font-size: 1rem;
+        background: #333;
+        color: #fff;
+    }
+
+    .signup-box button {
+        background: #e50914;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* Footer */
+    .footer {
+        background: #111;
+        padding: 2rem;
+        color: #aaa;
+        text-align: center;
+    }
+
+    .footer p {
+        margin-bottom: 1rem;
+    }
+
+    .footer a {
+        color: #aaa;
+        text-decoration: none;
+        display: block;
+        margin: 5px 0;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+    .footer-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        max-width: 800px;
+        margin: auto;
+        text-align: left;
+    }
+
+    .language {
+        margin-top: 1rem;
+    }
+
+    .language select {
+        background: #333;
+        color: #fff;
+        padding: 5px;
+        border: none;
+        font-size: 1rem;
+        border-radius: 5px;
+    }
+
+    </style>
+</head>
+<body>
+
+<!-- Showcase Header -->
+<header class="showcase">
+    <div class="showcase-top">
+        <img src="https://cdn.prod.website-files.com/5ee732bebd9839b494ff27cd/5ee732bebd98393d75ff281d_580b57fcd9996e24bc43c529.png"
+        width="250px" height="250px" alt="Netflix">
+        <a href="#" class="btn">Sign In</a>
+    </div>
+    <div class="showcase-content">
+        <h1>See what's next</h1>
+        <p>Watch anywhere. Cancel Anytime.</p>
+        <a href="#" class="btn">Watch Free For 30 Days</a>
+    </div>
+</header>
+<div class="trending-container">
+    <h2>Trending Now</h2>
+    <div class="movie-slider">
+        <div class="movie-card">
+            <span class="rank">1</span>
+            <img src="https://m.media-amazon.com/images/M/MV5BNWU1ZWFhNGQtZDhlZC00ZWFlLTlmNmEtN2VmYmZiN2Y5ZmQ2XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg   " width=200 height=250 alt="Pushpa 2">
+        </div>
+        <div class="movie-card">
+            <span class="rank">2</span>
+            <img src="https://m.media-amazon.com/images/M/MV5BZjYxMDE2OTAtNmQ5Yi00ZTcwLTgwOGQtZThmOTdhMzFhMjRiXkEyXkFqcGc@._V1_.jpg" width=200 height=250 alt="Vidamuyarchi">
+        </div>
+        <div class="movie-card">
+            <span class="rank">3</span>
+            <img src="https://rukminim2.flixcart.com/image/850/1000/xif0q/poster/h/d/k/medium-squid-game-hd-poster-for-wall-decor-a3-poster-squid-game-original-imagv2vxrqtudpet.jpeg?q=90&crop=false" width=200 height=250 alt="Squid Game">
+        </div>
+        <div class="movie-card">
+            <span class="rank">4</span>
+            <img src="https://m.media-amazon.com/images/M/MV5BMmFmMTJkOGMtZjhkNS00YzE1LWEyZGMtZDMyNjI1ODE0Mzc5XkEyXkFqcGc@._V1_.jpg"  width=200 height=250 alt="Troll">
+        </div>
+        <div class="movie-card">
+            <span class="rank">5</span>
+            <img src="https://stat4.bollywoodhungama.in/wp-content/uploads/2022/07/Emergency-2.jpg" width=200 height=250 alt="Emergency">
+        </div>
+        <div class="movie-card">
+            <span class="rank">6</span>
+            <img src="https://preview.redd.it/first-poster-of-nadaaniyan-a-romcom-starring-ibrahim-ali-v0-x4bc3p1wwgge1.png?auto=webp&s=7e9dc9b83e3b2dcd3bb2b770a59dfc2bb7c06995" width=200 height=250 alt="Nadaaniyan">
+        </div>
+        <div class="movie-card">
+            <span class="rank">7</span>
+            <img src="https://m.media-amazon.com/images/M/MV5BZTMxNTc0NzUtMzI3MS00YzQ3LThiMzAtNWVkNzg0MmM1Y2E0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" width=200 height=250 alt="Daaku Maharaja">
+        </div>
+        <div class="movie-card">
+            <span class="rank">8</span>
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg8pAp7zqM7cHgNa4urMYIa5m39ymIa53u6CyOLwYHInm3FFE75z7rhUvGdzzq0P2sdx47yeESaKioRXrXoXCIu6SlzNBNrG8-K277SdfavAiGJFjDaIacUsXU5jbZlWCNXOSoewFLrKws/s1600/Final-Avatar-Poster-8-12-09-kc.jpg" width=200 height=250 alt="Random">
+        </div>
+        <div class="movie-card">
+            <span class="rank">9</span>
+            <img src="https://www.acmodasi.in/amdb/images/movie/q/s/thandel-2025-8UxnEP.jpg" width=200 height=250 alt="Thandel">
+        </div>
+        <div class="movie-card">
+            <span class="rank">10</span>
+            <img src="https://stat5.bollywoodhungama.in/wp-content/uploads/2025/01/GjKVfAjXEAAUa6A-306x393.jpeg" width=200 height=250 alt="Thandel">
+        </div>
+    </div>
+</div>
+<section class="reasons">
+    <h2>More reasons to join</h2>
+    <div class="reason-cards">
+        <div class="reason-card">
+            <h3>Enjoy on your TV</h3>
+            <p>Watch on smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray players, and more.</p>
+        </div>
+        <div class="reason-card">
+            <h3>Download your shows to watch offline</h3>
+            <p>Save your favorites easily and always have something to watch.</p>
+        </div>
+        <div class="reason-card">
+            <h3>Watch everywhere</h3>
+            <p>Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV.</p>
+        </div>
+        <div class="reason-card">
+            <h3>Create profiles for kids</h3>
+            <p>Send kids on adventures with their favorite characters in a space made just for them.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+        <h3>What is Netflix? <span>+</span></h3>
+        <p class="faq-answer">Netflix is a streaming service that offers a wide variety of TV shows, movies, and more.</p>
+    </div>
+    <div class="faq-item">
+        <h3>How much does Netflix cost? <span>+</span></h3>
+        <p class="faq-answer">Plans start at $8.99 per month. Choose the plan that works best for you.</p>
+    </div>
+    <div class="faq-item">
+        <h3>Where can I watch? <span>+</span></h3>
+        <p class="faq-answer">You can watch Netflix on any device with an internet connection.</p>
+    </div>
+    <div class="faq-item">
+        <h3>How do I cancel? <span>+</span></h3>
+        <p class="faq-answer">Cancel your subscription anytime online, hassle-free.</p>
+    </div>
+</section>
+
+<!-- JavaScript for FAQ Accordion -->
+<script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+            const answer = item.querySelector('.faq-answer');
+            const icon = item.querySelector('span');
+            if (item.classList.contains('active')) {
+                answer.style.display = 'block';
+                icon.textContent = '-';
+            } else {
+                answer.style.display = 'none';
+                icon.textContent = '+';
+            }
+        });
+    });
+</script>
+
+
+<!-- Footer -->
+<footer class="footer">
+    <p>Questions? Call 1-866-579-7172</p>
+    <p>&copy; 2025 Netflix Clone. All rights reserved.</p>
+</footer>
+<!-- Email Signup Section -->
+<section class="signup">
+    <p>Ready to watch? Enter your email to create or restart your membership.</p>
+    <div class="signup-box">
+        <input type="email" id="email-input" placeholder="Email address" required>
+        <button id="get-started">Get Started <span>&#x27A1;</span></button>
+    </div>
+</section>
+
+<script>
+    document.getElementById("get-started").addEventListener("click", function () {
+        let emailInput = document.getElementById("email-input");
+        let email = emailInput.value.trim();
+
+        if (email === "") {
+            alert("Please enter a valid email address!");
+            emailInput.focus();  // Moves cursor to email input field
+        } else {
+            // Store email in localStorage (optional)
+            localStorage.setItem("userEmail", email);
+
+            // Redirect to a new page with email as a query parameter
+            window.location.href = "signup.html?email=" + encodeURIComponent(email);
+        }
+    });
+</script>
+
+
+<!-- Footer Section -->
+<footer class="footer">
+    <p>Questions? Call <a href="tel:000-800-919-1743">000-800-919-1743</a></p>
+    <div class="footer-links">
+        <div>
+            <a href="#">FAQ</a>
+            <a href="#">Account</a>
+            <a href="#">Investor Relations</a>
+            <a href="#">Ways to Watch</a>
+        </div>
+        <div>
+            <a href="#">Privacy</a>
+            <a href="#">Corporate Information</a>
+            <a href="#">Speed Test</a>
+            <a href="#">Only on Netflix</a>
+        </div>
+        <div>
+            <a href="#">Help Centre</a>
+            <a href="#">Media Centre</a>
+            <a href="#">Jobs</a>
+            <a href="#">Terms of Use</a>
+        </div>
+        <div>
+            <a href="#">Cookie Preferences</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Legal Notices</a>
+        </div>
+    </div>
+    <div class="language">
+        <select>
+            <option>English</option>
+            <option>हिन्दी</option>
+        </select>
+    </div>
+</footer>
+
+
+</body>
+</html>
