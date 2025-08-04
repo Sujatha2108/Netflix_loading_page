@@ -15,12 +15,6 @@ This is a simple Netflix Loading Animation Clone built with **HTML, CSS, and Jav
 - CSS3 (Flexbox, Animations)
 - JavaScript (Optional enhancements)
 
-## 📸 Preview
-![Netflix Loading Page Demo](path/to/your/screenshot.png)
-
-## 🚀 Live Demo
-[Click here to view it live](https://your-username.github.io/netflix-loading-page/)
-
 ## 📂 Project Structure
 netflix-loading-page/
 ├── index.html
